@@ -1,1 +1,25 @@
-<p>grafica1 works!</p>
+<!-- ============================================================== -->
+<!-- Start Page Content -->
+<!-- ============================================================== -->
+<div class="row">
+    <div class="col-6">
+        <app-donut titleDonut="Ventas"></app-donut>
+    </div>
+    <div class="col-6">
+        <app-donut titleDonut="Compras"
+                    [doughnutChartLabels]="doughnutChartLabels"
+                    [doughnutChartData_datasets]="doughnutChartData_datasets"
+                ></app-donut>
+    </div>
+</div>
+<div class="row">
+    <div class="col-6">
+        <app-donut titleDonut="Cambios"></app-donut>
+    </div>
+    <div class="col-6">
+        <app-donut titleDonut="Stock"></app-donut>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End PAge Content -->
+<!-- ============================================================== -->
