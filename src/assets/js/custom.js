@@ -5,7 +5,7 @@ Email: niravjoshi87@gmail.com
 File: js
 */
 
-const custionInitFunctions = () => {
+const customInitFunctions = () => {
     $(function() {
         "use strict";
         $(function() {
@@ -141,4 +141,51 @@ const custionInitFunctions = () => {
     });
 }
 
-custionInitFunctions();
+customInitFunctions();
+
+/* Google Sign In! */
+function js_onSignIn_fSculptor($event) { $event }
+js_onSignIn_fSculptor.child_fSculptor = function($event) { $event }
+function js_onFailure_fSculptor($event) { $event }
+js_onFailure_fSculptor.child_fSculptor = function($event) { $event }
+
+function js_onSignIn(googleUser) {
+    js_onSignIn_fSculptor(googleUser);
+    js_onSignIn_fSculptor.child_fSculptor(googleUser);
+}
+
+function js_onFailure(eError) {
+    js_onFailure_fSculptor(eError);
+    js_onFailure_fSculptor.child_fSculptor(eError);
+}
+
+/* Global Cookies! */
+const ADMINPRO_BFORCE_LOGINREFRESH = 'ADMINPRO_BFORCE_LOGINREFRESH';
+
+function js_getGlobalCookies(vDescription = '') {
+    var aCookie = document.cookie?.split(';');
+    var vSearch = (aCookie && aCookie.length > 0)
+        ? aCookie?.find( x => x.split('=')[0]?.trim() === vDescription )?.split('=')
+        : undefined;
+    var vResult = (vSearch && vSearch.length > 1) ? vSearch[1] : undefined;
+
+    return vResult;
+    /*return
+      document.cookie.split(';').find( x => x.split('=')[0] === vDescription ).split('=')[1];*/
+}
+
+function js_setGlobalCookies(vDescription = '', vValue = '') {
+    // max-age: 1 week!
+    document.cookie = `${vDescription}=${vValue};max-age=604800;SameSite=Lax;`;
+}
+
+function js_deleteGlobalCookies(vDescription = '') {
+    document.cookie = `${vDescription}=;max-age=0;SameSite=Lax;`;
+}
+
+( () => { // js_setGlobalCookies!
+    var local_ADMINPRO_BFORCE_LOGINREFRESH = js_getGlobalCookies(ADMINPRO_BFORCE_LOGINREFRESH);
+
+    if (local_ADMINPRO_BFORCE_LOGINREFRESH == null || local_ADMINPRO_BFORCE_LOGINREFRESH == undefined )
+        js_setGlobalCookies(ADMINPRO_BFORCE_LOGINREFRESH, 'true');
+} ) ();

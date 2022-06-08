@@ -5,6 +5,11 @@
     animation-fill-mode: both
 }
 
-#themecolors .selector {
+#themecolors .selector, .cursor {
     cursor: pointer;
+}
+
+.container-scrolleable {
+    scrollbar-width: thin;
+    overflow-y: scroll;
 }

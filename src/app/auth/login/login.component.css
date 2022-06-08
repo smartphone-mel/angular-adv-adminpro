@@ -36,6 +36,7 @@ Login register and recover password Page
       right: 0px; }
     .login-box .social {
       display: block;
+      margin-left: 3.2em;
       margin-bottom: 30px; }
   
   #recoverform {
