@@ -19,6 +19,6 @@ export class SidebarService {
   ];
 
   constructor() {
-    console.log('. SidebarService Init!');
+    //console.log('. SidebarService Init!');
   }
 }

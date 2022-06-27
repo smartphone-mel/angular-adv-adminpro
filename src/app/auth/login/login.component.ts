@@ -92,7 +92,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     this.formSubmitted = true;
 
     if (this.loginForm.valid) {
-      this._usuario.crearUsuario(this.loginForm.value)
+      this._usuario.login(this.loginForm.value)
         .subscribe(
           (res) => {
             if (this.loginForm.get('remember').value)
@@ -105,8 +105,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
             } );
           },
           (eError) => {
-            //Swal.fire('Error', eError.error.msg, 'error');
-            Swal.fire('Error', eError.message, 'error'); //eError.error.msg
+            Swal.fire('Error', !eError.error.msg ? eError.message : eError.error.msg, 'error');
           }
         );
     }

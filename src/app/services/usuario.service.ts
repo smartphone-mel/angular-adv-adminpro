@@ -28,7 +28,7 @@ export class UsuarioService {
   validarJWT(): Observable<boolean> {
     const token = localStorage.getItem('token') || '';
 
-    return this.http.get(`${environment.webapi_url}/renew`, {
+    return this.http.get(`${environment.webapi_url}/login/renew`, {
       headers: {
         'x-token': token
       }

@@ -7,7 +7,7 @@ export class SettingsService {
   private linkTheme = document.querySelector('#theme');
 
   constructor() {
-    console.log('. SettingsService Init!');
+    //console.log('. SettingsService Init!');
     // ...
     const theme = localStorage.getItem('theme');
     let sUrl = '';
