@@ -27,7 +27,7 @@ declare function js_setGlobalCookies(vDescription: string, vValue: string): void
 export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public formSubmitted = false;
-  public loginForm: any;
+  public loginForm: any; //FormGroup
   sTextoValidacion?: string = undefined;
   bLoadedFlag = false;
 

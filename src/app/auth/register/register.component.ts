@@ -13,7 +13,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 export class RegisterComponent implements OnInit {
 
   public formSubmitted = false;
-  public registerForm: any;
+  public registerForm: any; //FormGroup
   sTextoValidacion?: string = undefined;
 
   constructor(
