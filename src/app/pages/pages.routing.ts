@@ -10,6 +10,7 @@ import { ProgressComponent } from '../pages/progress/progress.component';
 import { Grafica1Component } from '../pages/grafica1/grafica1.component';
 import { PromiseComponent } from './promise/promise.component';
 import { RxJsComponent } from './rxjs/rxjs.component';
+import { UsuariosComponent } from './mantenimiento/usuarios/usuarios.component';
 
 const routes: Routes = [
   { path: 'dashboard',
@@ -22,7 +23,9 @@ const routes: Routes = [
       { path: 'progress', component: ProgressComponent, data: { title: 'ProgressBar' } },
       { path: 'grafica1', component: Grafica1Component, data: { title: 'Gráfica #1' } },
       { path: 'promise', component: PromiseComponent, data: { title: 'Promesas' } },
-      { path: 'rxjs', component: RxJsComponent, data: { title: 'RxJs' } }
+      { path: 'rxjs', component: RxJsComponent, data: { title: 'RxJs' } },
+      // Mantenimiento
+      { path: 'usuarios', component: UsuariosComponent, data: { title: 'Usuarios' } },
     ]
   },
 ];

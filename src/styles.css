@@ -17,3 +17,19 @@
 .img-avatar {
     max-width: 265px;
 }
+.img-avatar-sm {
+    max-width: 88px;
+}
+
+.w100 {
+    width: 100px;
+}
+.w128 {
+    width: 128px;
+}
+
+.grid-email::before {
+    font-weight: bold;
+    color: #008000;
+    content: ' ✓ ';
+}
