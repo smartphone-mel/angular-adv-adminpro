@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { delay, Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
 
+import { ModalImageService } from 'src/app/services/modal-image.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { BusquedasService } from 'src/app/services/busquedas.service';
 import { Usuario } from 'src/app/models/usuario.model';
@@ -11,21 +13,31 @@ import { Usuario } from 'src/app/models/usuario.model';
   styles: [
   ]
 })
-export class UsuariosComponent implements OnInit {
+export class UsuariosComponent implements OnInit, OnDestroy {
 
   public totalUsuarios: number = 0;
   public usuarios: Usuario[] = [];
   public usuariosTemp: Usuario[] = [];
   public desde: number = 0;
   public loading: boolean = true;
+  public imgSubscription: Subscription;
 
   constructor(
     private _usuario: UsuarioService,
-    private _busquedas: BusquedasService
-  ) { }
+    private _busquedas: BusquedasService,
+    private _modalImage: ModalImageService
+  ) {
+    this.imgSubscription = this._modalImage.nuevaImg
+      .pipe( delay(80) )
+      .subscribe( img => this.cargarUsuarios(false) );
+  }
 
   ngOnInit(): void {
     this.cargarUsuarios(true);
+  }
+
+  ngOnDestroy(): void {
+    this.imgSubscription.unsubscribe();
   }
 
   cargarUsuarios(bFirstLoad: boolean) {
@@ -60,6 +72,22 @@ export class UsuariosComponent implements OnInit {
           this.usuarios = res;
         }
       );
+  }
+
+  abrirModal(usuario: Usuario) {
+    this._modalImage.abrirModal(
+      'usuarios',
+      usuario.uid || '',
+      usuario.img || '',
+    );
+  }
+
+  cambiarRol(usuario: any) { // Usuario
+    this._usuario.actualizarPerfilFull(usuario)
+        .subscribe(
+          res => Swal.fire('Ok!', 'Rol de Usuario actualizado satisfactoriamente.', 'info'),
+          eError => Swal.fire('Error', 'Error al actualizar el Rol de Usuario.', 'error')
+        );
   }
 
   eliminarUsuario(usuario: Usuario) {
@@ -104,13 +132,5 @@ export class UsuariosComponent implements OnInit {
               );
         }
       } );
-  }
-
-  cambiarRol(usuario: any) { // Usuario
-    this._usuario.actualizarPerfilFull(usuario)
-        .subscribe(
-          res => Swal.fire('Ok!', 'Rol de Usuario actualizado satisfactoriamente.', 'info'),
-          eError => Swal.fire('Error', 'Error al actualizar el Rol de Usuario.', 'error')
-        );
   }
 }
