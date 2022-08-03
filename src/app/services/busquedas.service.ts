@@ -4,6 +4,7 @@ import { map } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 import { Usuario } from '../models/usuario.model';
+import { Hospital } from '../models/hospital.model';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,14 @@ export class BusquedasService {
       ) );
   }
 
+  private transformarMedicos( resultado: any[] ): any[] {
+    return resultado;
+  }
+
+  private transformarHospitales( resultado: any[] ): Hospital[] {
+    return resultado;
+  }
+
   busqueda(tabla: 'usuarios'|'medicos'|'hospitales', texto: string) {
     const url = `${environment.webapi_url}/todo/coleccion/${tabla}/${texto}`;
     return this.http.get< any[] >(url, this.headers)
@@ -35,9 +44,9 @@ export class BusquedasService {
                 case 'usuarios':
                   return this.transformarUsuarios(res.resultado);
                 case 'medicos':
-                  return res.resultado;
+                  return this.transformarMedicos(res.resultado);
                 case 'hospitales':
-                  return res.resultado;
+                  return this.transformarHospitales(res.resultado);
                 default:
                   return [];
               }

@@ -11,6 +11,8 @@ import { Grafica1Component } from '../pages/grafica1/grafica1.component';
 import { PromiseComponent } from './promise/promise.component';
 import { RxJsComponent } from './rxjs/rxjs.component';
 import { UsuariosComponent } from './mantenimiento/usuarios/usuarios.component';
+import { HospitalesComponent } from './mantenimiento/hospitales/hospitales.component';
+import { MedicosComponent } from './mantenimiento/medicos/medicos.component';
 
 const routes: Routes = [
   { path: 'dashboard',
@@ -26,6 +28,8 @@ const routes: Routes = [
       { path: 'rxjs', component: RxJsComponent, data: { title: 'RxJs' } },
       // Mantenimiento
       { path: 'usuarios', component: UsuariosComponent, data: { title: 'Usuarios' } },
+      { path: 'hospitales', component: HospitalesComponent, data: { title: 'Hospitales' } },
+      { path: 'medicos', component: MedicosComponent, data: { title: 'Médicos' } },
     ]
   },
 ];
