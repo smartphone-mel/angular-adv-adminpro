@@ -17,6 +17,10 @@ export class ModalImageService {
     return this._mostrarModal;
   }
 
+  get noImageAvailable() {
+    return `${environment.webapi_url}/uploads/no-image-available`;
+  }
+
   abrirModal(
     tipo: 'usuarios'|'medicos'|'hospitales',
     id: string,

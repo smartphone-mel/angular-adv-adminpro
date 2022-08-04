@@ -5,6 +5,7 @@ import { map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Usuario } from '../models/usuario.model';
 import { Hospital } from '../models/hospital.model';
+import { Medico } from '../models/medico.model';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,7 @@ export class BusquedasService {
       ) );
   }
 
-  private transformarMedicos( resultado: any[] ): any[] {
+  private transformarMedicos( resultado: any[] ): Medico[] {
     return resultado;
   }
 

@@ -13,6 +13,7 @@ import { RxJsComponent } from './rxjs/rxjs.component';
 import { UsuariosComponent } from './mantenimiento/usuarios/usuarios.component';
 import { HospitalesComponent } from './mantenimiento/hospitales/hospitales.component';
 import { MedicosComponent } from './mantenimiento/medicos/medicos.component';
+import { MedicoComponent } from './mantenimiento/medicos/medico.component';
 
 const routes: Routes = [
   { path: 'dashboard',
@@ -30,6 +31,7 @@ const routes: Routes = [
       { path: 'usuarios', component: UsuariosComponent, data: { title: 'Usuarios' } },
       { path: 'hospitales', component: HospitalesComponent, data: { title: 'Hospitales' } },
       { path: 'medicos', component: MedicosComponent, data: { title: 'Médicos' } },
+      { path: 'medico/:id', component: MedicoComponent, data: { title: 'Médico' } },
     ]
   },
 ];

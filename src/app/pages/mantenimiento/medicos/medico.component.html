@@ -1,0 +1,61 @@
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Formulario</h4>
+                <h6 class="card-subtitle">Complete los Datos</h6>
+                <form class="form-horizontal p-t-20">
+                    <div class="form-group row">
+                        <label for="imgFoto" class="col-sm-3 control-label">Foto</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <img id="imgFoto" class="w128"
+                                    [src]="modalImageService.noImageAvailable" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputNombre" class="col-sm-3 control-label">Nombre*</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="ti-user"></i></div>
+                                <input type="text" class="form-control" id="inputNombre" placeholder="Nombre">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputHospital" class="col-sm-3 control-label">Hospital*</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <select class="form-control">
+                                    <option>Hospital Central</option>
+                                    <option>Hospital Anexo</option>
+                                    <option>Hospital Provisorio</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row m-b-0">
+                        <div class="offset-sm-3 col-sm-9">
+                            <button type="submit" class="btn btn-success waves-effect waves-light">
+                                <i class="fa fa-save"></i>
+                                Guardar
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Hospital</h4>
+                <h6 class="card-subtitle">Hospital Asignado</h6>
+
+                <img id="imgFoto" class="w128"
+                    [src]="modalImageService.noImageAvailable" />
+            </div>
+        </div>
+    </div>
+</div>
