@@ -1,16 +1,29 @@
-<div class="row">
+<div *ngIf="loading" class="row animated fadeIn fast">
+    <div class="col-12">
+        <div class="alert alert-info text-center">
+            <h4 class="alert-heading">Cargando</h4>
+            <i class="fa fa-spin fa-refresh fa-2x"></i>
+            <p class="mb-0">Por favor espere.</p>
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="!loading">
     <div class="col">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Formulario</h4>
                 <h6 class="card-subtitle">Complete los Datos</h6>
-                <form class="form-horizontal p-t-20">
-                    <div class="form-group row">
+                <form class="form-horizontal p-t-20"
+                        [formGroup]="medicoForm"
+                        (submit)="guardarMedico()">
+                    <div class="form-group row"
+                            *ngIf="medicoSeleccionado">
                         <label for="imgFoto" class="col-sm-3 control-label">Foto</label>
                         <div class="col-sm-9">
                             <div class="input-group">
-                                <img id="imgFoto" class="w128"
-                                    [src]="modalImageService.noImageAvailable" />
+                                <img id="imgFoto" class="w128 cursor"
+                                    [src]="(medicoSeleccionado?.img||'') | img: 'medicos'"
+                                    [alt]="medicoSeleccionado?.nombre||''" (click)="abrirModal()" />
                             </div>
                         </div>
                     </div>
@@ -19,7 +32,8 @@
                         <div class="col-sm-9">
                             <div class="input-group">
                                 <div class="input-group-addon"><i class="ti-user"></i></div>
-                                <input type="text" class="form-control" id="inputNombre" placeholder="Nombre">
+                                <input type="text" class="form-control" id="inputNombre"
+                                        formControlName="nombre" placeholder="Nombre">
                             </div>
                         </div>
                     </div>
@@ -27,17 +41,18 @@
                         <label for="inputHospital" class="col-sm-3 control-label">Hospital*</label>
                         <div class="col-sm-9">
                             <div class="input-group">
-                                <select class="form-control">
-                                    <option>Hospital Central</option>
-                                    <option>Hospital Anexo</option>
-                                    <option>Hospital Provisorio</option>
+                                <select class="form-control" formControlName="hospital">
+                                    <option value="">Seleccione Hospital</option>
+                                    <option *ngFor="let hospital of hospitales"
+                                            [value]="hospital._id">{{hospital.nombre}}</option>
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div class="form-group row m-b-0">
                         <div class="offset-sm-3 col-sm-9">
-                            <button type="submit" class="btn btn-success waves-effect waves-light">
+                            <button type="submit" class="btn btn-success waves-effect waves-light"
+                                    [disabled]="medicoForm.invalid">
                                 <i class="fa fa-save"></i>
                                 Guardar
                             </button>
@@ -50,11 +65,15 @@
     <div class="col">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Hospital</h4>
-                <h6 class="card-subtitle">Hospital Asignado</h6>
+                <h4 class="card-title">
+                    {{!hospitalSeleccionado?'(Hospital no Asignado)':'Hospital'}}
+                </h4>
+                <h6 class="card-subtitle">
+                    {{hospitalSeleccionado?.nombre||'(sin datos)'}}
+                </h6>
 
                 <img id="imgFoto" class="w128"
-                    [src]="modalImageService.noImageAvailable" />
+                    [src]="(hospitalSeleccionado?.img||'') | img: 'hospitales'" />
             </div>
         </div>
     </div>

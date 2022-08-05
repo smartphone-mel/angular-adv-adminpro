@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, delay } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 import { Medico } from '../models/medico.model';
+import { MedicosComponent } from '../pages/mantenimiento/medicos/medicos.component';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class MedicoService {
       'x-token': this.token
       } } }
 
-  crearMedico(medico: Medico) {
+  crearMedico( medico: { nombre: string, hospital: string|undefined } ) {
     const url = `${environment.webapi_url}/medicos`;
     return this.http.post<any>(url, medico, this.headers)
       .pipe(
@@ -40,7 +41,16 @@ export class MedicoService {
     const url = `${environment.webapi_url}/medicos`;
     return this.http.get<any>(url, this.headers)
       .pipe(
+        delay( !bFirstLoad ? 450 : 980 ),
         map( ( res: { ok: boolean, medicos: Medico[] } ) => res.medicos )
+      );
+  }
+
+  cargarMedicoById(_id: string) {
+    const url = `${environment.webapi_url}/medicos/${_id}`;
+    return this.http.get<any>(url, this.headers)
+      .pipe(
+        map( ( res: { ok: boolean, medico: Medico } ) => res.medico )
       );
   }
 

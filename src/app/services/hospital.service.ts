@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, delay } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 import { Hospital } from '../models/hospital.model';
@@ -40,6 +40,7 @@ export class HospitalService {
     const url = `${environment.webapi_url}/hospitales`;
     return this.http.get<any>(url, this.headers)
       .pipe(
+        delay( !bFirstLoad ? 450 : 980 ),
         map( ( res: { ok: boolean, hospitales: Hospital[] } ) => res.hospitales )
       );
   }
