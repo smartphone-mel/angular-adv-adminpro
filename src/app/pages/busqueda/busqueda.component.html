@@ -1,0 +1,123 @@
+<div class="row animated fadeIn fast">
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Usuarios</h4>
+                <h6 class="card-subtitle">Resultados</h6>
+
+                <div class="alert alert-warning text-center animated fadeIn fast"
+                        *ngIf="usuarios.length === 0">
+                    <h4 class="alert-heading">Error 204</h4>
+                    <i class="fa fa-warning fa-2x"></i>
+                    <p class="mb-0">No hay datos.</p>
+                </div>
+
+                <div class="table-responsive"
+                        *ngIf="usuarios.length > 0">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="w100 text-center">Avatar</th>
+                                <th class="text-center">Nombre</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let usuario of usuarios"
+                                    class="animated fadeIn fast">
+                                <td class="img-avatar-sm">
+                                    <img class="img-avatar-sm"
+[src]="(!usuario.img?'':usuario.img) | img: 'usuarios'"
+[alt]="usuario.nombre" />
+                                </td>
+                                <td>
+                                    {{usuario.apellido+', '+usuario.nombre}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Hospitales</h4>
+                <h6 class="card-subtitle">Resultados</h6>
+
+                <div class="alert alert-warning text-center animated fadeIn fast"
+                        *ngIf="hospitales.length === 0">
+                    <h4 class="alert-heading">Error 204</h4>
+                    <i class="fa fa-warning fa-2x"></i>
+                    <p class="mb-0">No hay datos.</p>
+                </div>
+
+                <div class="table-responsive"
+                        *ngIf="hospitales.length > 0">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="w100 text-center">Foto</th>
+                                <th class="text-center">Nombre</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let hospital of hospitales"
+                                    class="animated fadeIn fast">
+                                <td class="img-avatar-sm">
+                                    <img class="img-avatar-sm"
+[src]="(!hospital.img?'':hospital.img) | img: 'hospitales'"
+[alt]="hospital.nombre" />
+                                </td>
+                                <td>
+                                    {{hospital.nombre}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Médicos</h4>
+                <h6 class="card-subtitle">Resultados</h6>
+
+                <div class="alert alert-warning text-center animated fadeIn fast"
+                        *ngIf="medicos.length === 0">
+                    <h4 class="alert-heading">Error 204</h4>
+                    <i class="fa fa-warning fa-2x"></i>
+                    <p class="mb-0">No hay datos.</p>
+                </div>
+
+                <div class="table-responsive"
+                        *ngIf="medicos.length > 0">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="w100 text-center">Foto</th>
+                                <th class="text-center">Nombre</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let medico of medicos"
+                                    class="animated fadeIn fast cursor cursor-selectionable"
+                                    [routerLink]="['/dashboard/medico', medico._id]">
+                                <td class="img-avatar-sm">
+                                    <img class="img-avatar-sm"
+[src]="(!medico.img?'':medico.img) | img: 'medicos'"
+[alt]="medico.nombre" />
+                                </td>
+                                <td>
+                                    {{medico.nombre}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

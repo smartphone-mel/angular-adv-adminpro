@@ -5,6 +5,10 @@
     animation-fill-mode: both
 }
 
+.cursor-selectionable:hover {
+    background-color: #00000013;
+}
+
 #themecolors .selector, .cursor {
     cursor: pointer;
 }

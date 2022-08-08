@@ -10,6 +10,7 @@ import { ProgressComponent } from '../pages/progress/progress.component';
 import { Grafica1Component } from '../pages/grafica1/grafica1.component';
 import { PromiseComponent } from './promise/promise.component';
 import { RxJsComponent } from './rxjs/rxjs.component';
+import { BusquedaComponent } from './busqueda/busqueda.component';
 import { UsuariosComponent } from './mantenimiento/usuarios/usuarios.component';
 import { HospitalesComponent } from './mantenimiento/hospitales/hospitales.component';
 import { MedicosComponent } from './mantenimiento/medicos/medicos.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
     canActivate: [ AuthGuard ],
     children: [
       { path: '', component: DashboardComponent, data: { title: 'Principal' } },
+      { path: 'buscar/:txtBusqueda', component: BusquedaComponent, data: { title: 'Búsqueda General' } },
       { path: 'perfil', component: PerfilComponent, data: { title: 'Perfil de Usuario' } },
       { path: 'account-settings', component: AccountSettingsComponent, data: { title: 'Ajustes de Cuenta' } },
       { path: 'progress', component: ProgressComponent, data: { title: 'ProgressBar' } },

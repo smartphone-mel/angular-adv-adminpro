@@ -26,6 +26,10 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  buscar(txtBusqueda: any) {
+    this.router.navigateByUrl(`/dashboard/buscar/${txtBusqueda}`);
+  }
+
   logout() {
     this._usuario.logout();
     this.router.navigateByUrl('/login');

@@ -7,7 +7,7 @@
         <!-- Logo -->
         <!-- ============================================================== -->
         <div class="navbar-header">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" routerLink="/">
                 <!-- Logo icon --><b>
                     <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                     <!-- Dark Logo icon -->
@@ -42,9 +42,17 @@
                 <!-- ============================================================== -->
                 <!-- Search -->
                 <!-- ============================================================== -->
-                <li class="nav-item hidden-xs-down search-box"> <a class="nav-link hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
-                    <form class="app-search">
-                        <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="ti-close"></i></a> </form>
+                <li class="nav-item hidden-xs-down search-box">
+                    <a class="nav-link hidden-sm-down waves-effect waves-dark" href="javascript:void(0)">
+                        <i class="ti-search"></i>
+                    </a>
+                    <form class="app-search" (submit)="buscar(txtBusqueda.value)">
+                        <input #txtBusqueda type="text" class="form-control"
+                                placeholder="Buscar...">
+                        <a class="srh-btn">
+                            <i class="ti-close"></i>
+                        </a>
+                    </form>
                 </li>
                 <!-- ============================================================== -->
                 <!-- Comment -->
@@ -170,7 +178,7 @@
                                         <p class="text-muted">
 {{usuario.email | slice:0:22 }}{{usuario.email.length > 22 ? '...' : '' }}
                                         </p>
-                                        <a href="pages-profile.html" class="btn btn-rounded btn-danger btn-sm">
+                                        <a routerLink="./perfil" class="btn btn-rounded btn-danger btn-sm">
                                             View Profile
                                         </a>
                                     </div>

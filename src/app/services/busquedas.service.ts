@@ -35,6 +35,11 @@ export class BusquedasService {
     return resultado;
   }
 
+  busquedaGlobal(texto: string) {
+    const url = `${environment.webapi_url}/todo/${texto}`;
+    return this.http.get(url, this.headers);
+  }
+
   busqueda(tabla: 'usuarios'|'medicos'|'hospitales', texto: string) {
     const url = `${environment.webapi_url}/todo/coleccion/${tabla}/${texto}`;
     return this.http.get< any[] >(url, this.headers)
