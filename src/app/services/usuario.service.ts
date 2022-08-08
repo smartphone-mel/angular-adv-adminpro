@@ -26,12 +26,17 @@ export class UsuarioService {
   get headers() { return { headers: {
       'x-token': this.token
     } } }
+  
+  guardarLocalStorage(token: string, menu: any) {
+    localStorage.setItem('token' , token);
+    localStorage.setItem( 'menu-nav' , JSON.stringify(menu) );
+  }
 
   crearUsuario(formData: RegisterForm) {
     return this.http.post(`${environment.webapi_url}/usuarios`, formData)
         .pipe(
           tap( (res: any) => {
-            localStorage.setItem('token' , res.token);
+            this.guardarLocalStorage(res.token, res.menu)
           } )
         );
   }
@@ -44,7 +49,7 @@ export class UsuarioService {
             this.usuario = new Usuario(
                 email, nombre, apellido, '', img, role, google, uid
               );
-            localStorage.setItem('token' , res.token);
+            this.guardarLocalStorage(res.token, res.menu);
             return true;
           } ),
           //map( (res: any) => true ),
@@ -56,13 +61,14 @@ export class UsuarioService {
     return this.http.post(`${environment.webapi_url}/login`, formData)
         .pipe(
           tap( (res: any) => {
-            localStorage.setItem('token' , res.token);
+            this.guardarLocalStorage(res.token, res.menu)
           } )
         );
   }
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('menu-nav');
   }
 
   actualizarPerfil( data: { nombre: string, apellido: string, email: string, role: string } )

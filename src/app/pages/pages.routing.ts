@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AuthGuard } from '../guards/auth.guard';
+import { AdminGuard } from '../guards/admin.guard';
 import { PagesComponent } from '../pages/pages.component';
 import { DashboardComponent } from '../pages/dashboard/dashboard.component';
 import { PerfilComponent } from './perfil/perfil.component';
@@ -30,7 +31,7 @@ const routes: Routes = [
       { path: 'promise', component: PromiseComponent, data: { title: 'Promesas' } },
       { path: 'rxjs', component: RxJsComponent, data: { title: 'RxJs' } },
       // Mantenimiento
-      { path: 'usuarios', component: UsuariosComponent, data: { title: 'Usuarios' } },
+      { path: 'usuarios', canActivate: [AdminGuard], component: UsuariosComponent, data: { title: 'Usuarios' } },
       { path: 'hospitales', component: HospitalesComponent, data: { title: 'Hospitales' } },
       { path: 'medicos', component: MedicosComponent, data: { title: 'Médicos' } },
       { path: 'medico/:id', component: MedicoComponent, data: { title: 'Médico' } },
