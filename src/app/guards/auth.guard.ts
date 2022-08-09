@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, CanLoad, Route, Router, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
 import { catchError, Observable, of, tap } from 'rxjs';
 
 import { UsuarioService } from '../services/usuario.service';
@@ -7,7 +7,7 @@ import { UsuarioService } from '../services/usuario.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class AuthGuard implements CanActivate, CanLoad {
   constructor(
     private _usuario: UsuarioService,
     private router: Router
@@ -45,5 +45,21 @@ export class AuthGuard implements CanActivate {
           }
         )
       );
+  }
+
+  canLoad(
+    route: Route,
+    segments: UrlSegment[]): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+
+    // Auth Code!
+    return this._usuario.validarJWT().pipe(
+      tap(
+        estaAutenticado => {
+          if (!estaAutenticado) {
+            this.router.navigateByUrl('/login');
+          }
+        }
+      )
+    );
   }
 }
